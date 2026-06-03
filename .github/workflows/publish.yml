@@ -58,12 +58,17 @@ jobs:
             echo "NPM_TOKEN secret is empty"
             exit 1
           fi
-          printf '//registry.npmjs.org/:_authToken=%s\n' "$TOKEN" > ~/.npmrc
+          NPMRC="${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}"
+          printf '//registry.npmjs.org/:_authToken=%s\n' "$TOKEN" > "$NPMRC"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Verify npm auth
         run: npm whoami --registry=https://registry.npmjs.org/
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to npm
         run: npm publish --access public --provenance
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
