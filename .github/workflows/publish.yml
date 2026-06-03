@@ -51,7 +51,19 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Configure npm auth
+        run: |
+          TOKEN="$(printf '%s' "$NPM_TOKEN" | tr -d '\r\n')"
+          if [ -z "$TOKEN" ]; then
+            echo "NPM_TOKEN secret is empty"
+            exit 1
+          fi
+          printf '//registry.npmjs.org/:_authToken=%s\n' "$TOKEN" > ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Verify npm auth
+        run: npm whoami --registry=https://registry.npmjs.org/
+
       - name: Publish to npm
         run: npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
