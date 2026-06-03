@@ -1,6 +1,6 @@
 {
   "name": "@gaojihao/devmem",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Local memory for AI coding sessions.",
   "license": "MIT",
   "type": "module",
