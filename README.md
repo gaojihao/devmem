@@ -1,5 +1,9 @@
 # devmem
 
+[![npm version](https://img.shields.io/npm/v/@gaojihao/devmem.svg)](https://www.npmjs.com/package/@gaojihao/devmem)
+[![npm downloads](https://img.shields.io/npm/dm/@gaojihao/devmem.svg)](https://www.npmjs.com/package/@gaojihao/devmem)
+[![license](https://img.shields.io/npm/l/@gaojihao/devmem.svg)](./LICENSE)
+
 [中文文档](./README.zh-CN.md)
 
 Local memory for AI coding sessions.
@@ -37,6 +41,8 @@ It gives you:
 ## Installation
 
 ### Install from npm
+
+Published on npm: [@gaojihao/devmem](https://www.npmjs.com/package/@gaojihao/devmem)
 
 ```bash
 npm install -g @gaojihao/devmem

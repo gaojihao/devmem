@@ -1,5 +1,9 @@
 # devmem
 
+[![npm version](https://img.shields.io/npm/v/@gaojihao/devmem.svg)](https://www.npmjs.com/package/@gaojihao/devmem)
+[![npm downloads](https://img.shields.io/npm/dm/@gaojihao/devmem.svg)](https://www.npmjs.com/package/@gaojihao/devmem)
+[![license](https://img.shields.io/npm/l/@gaojihao/devmem.svg)](./LICENSE)
+
 [English](./README.md)
 
 AI 编程会话的本地记忆工具。
@@ -37,6 +41,8 @@ AI Coding 很强，但上下文很脆弱。
 ## 安装
 
 ### 从 npm 安装
+
+已发布到 npm：[@gaojihao/devmem](https://www.npmjs.com/package/@gaojihao/devmem)
 
 ```bash
 npm install -g @gaojihao/devmem
