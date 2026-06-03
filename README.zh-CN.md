@@ -165,9 +165,19 @@ v0.1 明确不做：
 ### 环境要求
 
 - Node.js 20+
-- pnpm
 - Git
 - 一个 OpenAI-compatible Chat Completions API
+
+### npm 安装
+
+发布到 npm 后，可以这样安装：
+
+```bash
+npm install -g @gaojihao/devmem
+devmem --help
+```
+
+npm 包名是 `@gaojihao/devmem`，但安装后的命令仍然是 `devmem`。
 
 ### 开发安装
 
@@ -762,4 +772,4 @@ init -> start -> save -> resume -> log
 
 ## License
 
-尚未选择 License。
+MIT。详见 [LICENSE](./LICENSE)。

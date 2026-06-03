@@ -99,9 +99,19 @@ The v0.1 goal is simple:
 ### Requirements
 
 - Node.js 20+
-- pnpm
 - Git
 - An OpenAI-compatible chat completions API
+
+### npm install
+
+After the package is published to npm:
+
+```bash
+npm install -g @gaojihao/devmem
+devmem --help
+```
+
+The npm package name is `@gaojihao/devmem`, but the installed command is still `devmem`.
 
 ### Development install
 
@@ -694,4 +704,4 @@ Avoid premature complexity:
 
 ## License
 
-License has not been selected yet.
+MIT. See [LICENSE](./LICENSE).

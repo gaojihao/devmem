@@ -1,17 +1,45 @@
 {
-  "name": "devmem",
+  "name": "@gaojihao/devmem",
   "version": "0.1.0",
   "description": "Local memory for AI coding sessions.",
+  "license": "MIT",
   "type": "module",
   "bin": {
     "devmem": "./dist/cli.js"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
   "scripts": {
     "dev": "tsx src/cli.ts",
     "build": "tsup",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepack": "pnpm build"
+  },
+  "keywords": [
+    "ai-coding",
+    "claude-code",
+    "codex",
+    "cli",
+    "developer-tools",
+    "local-first",
+    "git"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/gaojihao/devmem.git"
+  },
+  "homepage": "https://github.com/gaojihao/devmem#readme",
+  "bugs": {
+    "url": "https://github.com/gaojihao/devmem/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "chalk": "^5.4.1",
