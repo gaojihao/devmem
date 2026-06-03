@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "devmem": "./dist/cli.js"
+    "devmem": "dist/cli.js"
   },
   "files": [
     "dist",
