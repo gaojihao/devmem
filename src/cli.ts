@@ -9,6 +9,7 @@ import { initCommand } from './commands/init.js'
 import { logCommand } from './commands/log.js'
 import { resumeCommand } from './commands/resume.js'
 import { saveCommand } from './commands/save.js'
+import { setupCommand, type SetupProvider } from './commands/setup.js'
 import { showCommand } from './commands/show.js'
 import { startCommand } from './commands/start.js'
 import { formatError } from './core/errors.js'
@@ -33,6 +34,17 @@ program.name('devmem').description('Local memory for AI coding sessions.').versi
 program.command('init').description('Initialize devmem in the current Git project').action(() => run(() => initCommand(process.cwd())))
 
 program.command('doctor').description('Check devmem project setup').action(() => run(() => doctorCommand(process.cwd())))
+
+program
+  .command('setup')
+  .description('Initialize devmem and configure an OpenAI-compatible provider')
+  .requiredOption('-p, --provider <provider>', 'Provider preset: openai, openrouter, deepseek, ollama, custom')
+  .option('-u, --base-url <url>', 'Base URL for custom provider')
+  .requiredOption('-k, --api-key <key>', 'Provider API key')
+  .requiredOption('-m, --model <model>', 'Model name')
+  .action((options: { provider: SetupProvider; baseUrl?: string; apiKey: string; model: string }) =>
+    run(() => setupCommand(process.cwd(), options)),
+  )
 
 program.command('start').argument('<task>').description('Start an AI coding session').action((task: string) =>
   run(async () => {
