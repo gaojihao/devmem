@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
+import { readFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { configGetCommand, configSetCommand } from './commands/config.js'
 import { initCommand } from './commands/init.js'
 import { logCommand } from './commands/log.js'
@@ -19,8 +22,11 @@ async function run(action: () => Promise<string | object>): Promise<void> {
   }
 }
 
+const packageJsonPath = join(dirname(fileURLToPath(import.meta.url)), '..', 'package.json')
+const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8')) as { version: string }
+
 const program = new Command()
-program.name('devmem').description('Local memory for AI coding sessions.').version('0.1.0')
+program.name('devmem').description('Local memory for AI coding sessions.').version(packageJson.version)
 
 program.command('init').description('Initialize devmem in the current Git project').action(() => {
   void run(() => initCommand(process.cwd()))
