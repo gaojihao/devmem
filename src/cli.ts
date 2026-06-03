@@ -31,7 +31,16 @@ const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8')) as { versi
 const program = new Command()
 program.name('devmem').description('Local memory for AI coding sessions.').version(packageJson.version)
 
-program.command('init').description('Initialize devmem in the current Git project').action(() => run(() => initCommand(process.cwd())))
+program.command('init').description('Initialize devmem in the current Git project').action(() =>
+  run(async () => {
+    await initCommand(process.cwd())
+    return `✅ devmem initialized at .devmem/
+
+Next:
+  devmem setup --provider openai --api-key YOUR_API_KEY --model gpt-4o-mini
+  devmem start "Describe your task"`
+  }),
+)
 
 program.command('doctor').description('Check devmem project setup').action(() => run(() => doctorCommand(process.cwd())))
 
@@ -49,16 +58,31 @@ program
 program.command('start').argument('<task>').description('Start an AI coding session').action((task: string) =>
   run(async () => {
     const session = await startCommand(process.cwd(), task)
-    return `Started session: ${session.id}
-Task: ${session.task}`
+    return `✅ Started session: ${session.id}
+
+Task:
+  ${session.task}
+
+Now code as usual with Claude Code, Codex, your editor, or terminal.
+
+When you stop:
+  devmem save`
   }),
 )
 
 program.command('save').description('Save the active session').action(() =>
   run(async () => {
     const session = await saveCommand(process.cwd())
-    return `Saved session: ${session.id}
-Summary: ${session.summary ?? ''}`
+    return `✅ Saved session: ${session.id}
+
+Summary:
+  ${session.summary ?? ''}
+
+Resume later:
+  devmem resume
+
+View details:
+  devmem show ${session.id}`
   }),
 )
 
