@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { configGetCommand, configSetCommand } from './commands/config.js'
+import { doctorCommand } from './commands/doctor.js'
 import { initCommand } from './commands/init.js'
 import { logCommand } from './commands/log.js'
 import { resumeCommand } from './commands/resume.js'
@@ -30,6 +31,8 @@ const program = new Command()
 program.name('devmem').description('Local memory for AI coding sessions.').version(packageJson.version)
 
 program.command('init').description('Initialize devmem in the current Git project').action(() => run(() => initCommand(process.cwd())))
+
+program.command('doctor').description('Check devmem project setup').action(() => run(() => doctorCommand(process.cwd())))
 
 program.command('start').argument('<task>').description('Start an AI coding session').action((task: string) =>
   run(async () => {
